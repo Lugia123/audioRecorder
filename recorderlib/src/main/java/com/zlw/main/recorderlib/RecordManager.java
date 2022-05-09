@@ -54,7 +54,16 @@ public class RecordManager {
             return;
         }
         Logger.i(TAG, "start...");
-        RecordService.startRecording(context);
+        RecordService.startRecording("", context);
+    }
+
+    public void startByPrefix(String prefix) {
+        if (context == null) {
+            Logger.e(TAG, "未进行初始化");
+            return;
+        }
+        Logger.i(TAG, "start...");
+        RecordService.startRecording(prefix, context);
     }
 
     public void stop() {

@@ -83,10 +83,10 @@ public class RecordService extends Service {
     }
 
 
-    public static void startRecording(Context context) {
+    public static void startRecording(String prefix, Context context) {
         Intent intent = new Intent(context, RecordService.class);
         intent.putExtra(ACTION_NAME, ACTION_START_RECORD);
-        intent.putExtra(PARAM_PATH, getFilePath());
+        intent.putExtra(PARAM_PATH, getFilePath(prefix));
         context.startService(intent);
     }
 
@@ -201,7 +201,7 @@ public class RecordService extends Service {
      * 根据当前的时间生成相应的文件名
      * 实例 record_20160101_13_15_12
      */
-    private static String getFilePath() {
+    private static String getFilePath(String prefix) {
 
         String fileDir =
                 currentConfig.getRecordDir();
@@ -209,7 +209,7 @@ public class RecordService extends Service {
             Logger.w(TAG, "文件夹创建失败：%s", fileDir);
             return null;
         }
-        String fileName = String.format(Locale.getDefault(), "record_%s", FileUtils.getNowString(new SimpleDateFormat("yyyyMMdd_HH_mm_ss", Locale.SIMPLIFIED_CHINESE)));
+        String fileName = String.format(Locale.getDefault(), "R_%s_%s", prefix, FileUtils.getNowString(new SimpleDateFormat("yyyyMMdd_HH_mm_ss", Locale.SIMPLIFIED_CHINESE)));
         return String.format(Locale.getDefault(), "%s%s%s", fileDir, fileName, currentConfig.getFormat().getExtension());
     }
 

@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.main.zlw.zlwaudiorecorder.base.MyApp;
 import com.zlw.loggerlib.Logger;
+import com.zlw.main.recorderlib.BuildConfig;
 import com.zlw.main.recorderlib.RecordManager;
 import com.zlw.main.recorderlib.recorder.RecordConfig;
 import com.zlw.main.recorderlib.recorder.RecordHelper;
